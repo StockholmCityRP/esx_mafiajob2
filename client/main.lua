@@ -412,7 +412,7 @@ function OpenMafiaActionsMenu()
             title    = _U('vehicle_interaction'),
             align    = 'bottom-right',
             elements = {
-              --{label = _U('vehicle_info'), value = 'vehicle_infos'},
+              {label = _U('vehicle_info'), value = 'vehicle_infos'},
               {label = _U('pick_lock'),    value = 'hijack_vehicle'},
             },
           },
