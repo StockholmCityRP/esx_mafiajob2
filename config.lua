@@ -43,6 +43,8 @@ Config.Mafia2Stations = {
 		  { name = 'guardian',   label = 'Guardian 4x4' },
 		  { name = 'rumpo3',     label = 'Rumpo' },
 		  { name = 'mesa',       label = 'mesa' },
+		  { name = 'xls2',       label = 'XLS2' },
+		  { name = 'ztype',      label = 'Z-Type' },
 	  },
 
     Cloakrooms = {
