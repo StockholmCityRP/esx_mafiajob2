@@ -1,4 +1,6 @@
-# esx_mafiajob
+# esx_mafiajob2
+
+Modified by Kasper Ek from the SCRP team
 
 [REQUIREMENTS]
   
