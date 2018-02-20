@@ -37,10 +37,10 @@ end)
 function SetVehicleMaxMods(vehicle)
 
   local props = {
-    modEngine       = 2,
-    modBrakes       = 2,
-    modTransmission = 2,
-    modSuspension   = 3,
+    modEngine       = 4,
+    modBrakes       = 4,
+    modTransmission = 4,
+    modSuspension   = 4,
     modTurbo        = true,
   }
 
@@ -221,7 +221,7 @@ function OpenVehicleSpawnerMenu(station, partNum)
             TaskWarpPedIntoVehicle(playerPed,  vehicle,  -1)
           end)
 
-          TriggerServerEvent('esx_society:removeVehicleFromGarage', 'mafia', vehicleProps)
+          TriggerServerEvent('esx_society:removeVehicleFromGarage', 'mafia2', vehicleProps)
 
         end,
         function(data, menu)
@@ -243,7 +243,7 @@ function OpenVehicleSpawnerMenu(station, partNum)
 
     if Config.EnablePlayerManagement and PlayerData.job ~= nil and
       (PlayerData.job.grade_name == 'boss') then
-      table.insert(elements, {label = 'Kuruma', value = 'kuruma2'})
+      table.insert(elements, {label = 'XLS2 (Armored)', value = 'xls2'})
     end
 
     for i=1, #Config.Mafia2Stations[station].AuthorizedVehicles, 1 do
