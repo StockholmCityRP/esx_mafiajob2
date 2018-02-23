@@ -100,7 +100,7 @@ function OpenArmoryMenu(station)
       {label = _U('get_weapon'), value = 'get_weapon'},
       {label = _U('put_weapon'), value = 'put_weapon'},
       {label = _U('get_stock'),  value = 'get_stock'},
-      {label = _U('deposit_stock')  value = 'put_stock'},
+      {label = _U('deposit_stock'),  value = 'put_stock'},
     }
 
     if PlayerData.job.grade_name == 'boss' then
