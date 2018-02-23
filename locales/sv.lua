@@ -1,9 +1,9 @@
-rLocales['sv'] = {
+Locales['sv'] = {
   -- Cloakroom
   ['cloakroom'] = 'Omklädningsrum',
   ['citizen_wear'] = 'Vanliga kläder',
   ['mafia_wear'] = 'Maffia kläder',
-  ['open_cloackroom'] = 'tryck ~INPUT_CONTEXT~ fö att byta',
+  ['open_cloackroom'] = 'tryck ~INPUT_CONTEXT~ för att byta',
   -- Armory
   ['get_weapon'] = 'Ta Vapen',
   ['put_weapon'] = 'Ta bort Vapen',
