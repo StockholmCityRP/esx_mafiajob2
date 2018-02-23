@@ -7,6 +7,8 @@ Locales['sv'] = {
   -- Armory
   ['get_weapon'] = 'Ta Vapen',
   ['put_weapon'] = 'Ta bort Vapen',
+  ['get_stock'] = 'Ta ut från lager',
+  ['put_stock'] = 'Sätt in i lager',
   ['buy_weapons'] = 'Köp Vapen',
   ['armory'] = 'Vapenlager',
   ['open_armory'] = 'tryck ~INPUT_CONTEXT~ för att komma åt vapenlagret',
