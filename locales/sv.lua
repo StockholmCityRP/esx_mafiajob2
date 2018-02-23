@@ -1,4 +1,4 @@
-Locales['sv'] = {
+rLocales['sv'] = {
   -- Cloakroom
   ['cloakroom'] = 'Omklädningsrum',
   ['citizen_wear'] = 'Vanliga kläder',
