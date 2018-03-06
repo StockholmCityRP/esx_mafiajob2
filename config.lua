@@ -39,10 +39,10 @@ Config.Mafia2Stations = {
 	  AuthorizedVehicles = {
 		  { name = 'schafter3',  label = 'Civil Vehicle' },
 		  { name = 'sandking',   label = 'Sandking 4X4' },
-		  { name = 'mule3',      label = 'Transport truck' },
+		  --{ name = 'mule3',      label = 'Transport truck' },
 		  { name = 'guardian',   label = 'Guardian 4x4' },
 		  { name = 'rumpo3',     label = 'Rumpo' },
-		  { name = 'mesa',       label = 'Mesa' },
+		  { name = 'dubsta2',    label = 'Dubsta' },
 		  { name = 'baller4',    label = 'Baller' },
 	  },
 
