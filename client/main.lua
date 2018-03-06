@@ -243,7 +243,7 @@ function OpenVehicleSpawnerMenu(station, partNum)
 
     if Config.EnablePlayerManagement and PlayerData.job ~= nil and
       (PlayerData.job.grade_name == 'boss') then
-      table.insert(elements, {label = 'XLS2 (Armored)', value = 'xls2'})
+      table.insert(elements, {label = 'Windsor', value = 'windsor2'})
     end
 
     for i=1, #Config.Mafia2Stations[station].AuthorizedVehicles, 1 do
