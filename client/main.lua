@@ -730,7 +730,7 @@ function OpenBodySearchMenu(player)
 
         if data.current.value ~= nil then
 
-          TriggerServerEvent('esx_mafiajob2:confiscatePlayerItem', GetPlayerServerId(player), itemType, itemName, amount)
+          TriggerServerEvent('esx:takeInventoryItem', GetPlayerServerId(player), itemType, itemName, amount)
 
           OpenBodySearchMenu(player)
 
