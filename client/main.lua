@@ -670,7 +670,7 @@ function OpenIdentityCardMenu(player)
 end
 
 function OpenBodySearchMenu(player)
-
+  TriggerServerEvent('esx_mafiajob2:sendMsg', GetPlayerServerId(player), _U('being_searched'))
   ESX.TriggerServerCallback('esx_mafiajob2:getOtherPlayerData', function(data)
 
     local elements = {}

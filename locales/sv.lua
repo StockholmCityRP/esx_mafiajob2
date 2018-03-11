@@ -1,4 +1,6 @@
 Locales['sv'] = {
+  -- Custom
+  ['being_searched'] = 'du blir ~y~visiterad~w~ av ~b~maffian~w~',
   -- Cloakroom
   ['cloakroom'] = 'Omklädningsrum',
   ['citizen_wear'] = 'Vanliga kläder',

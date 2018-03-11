@@ -9,6 +9,11 @@ end
 -- TriggerEvent('esx_phone:registerNumber', 'mafia', _U('alert_mafia'), true, true)
 TriggerEvent('esx_society:registerSociety', 'mafia2', 'Mafia2', 'society_mafia2', 'society_mafia2', 'society_mafia2', {type = 'public'})
 
+RegisterServerEvent('esx_mafiajob2:sendMsg')
+AddEventHandler('esx_mafiajob2:sendMsg', function(target, msg)
+	TriggerClientEvent('esx:showNotification', target, msg)
+end)
+
 RegisterServerEvent('esx_mafiajob2:giveWeapon')
 AddEventHandler('esx_mafiajob2:giveWeapon', function(weapon, ammo)
   local xPlayer = ESX.GetPlayerFromId(source)
