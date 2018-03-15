@@ -1,6 +1,9 @@
 Locales['sv'] = {
   -- Custom
   ['being_searched'] = 'du blir ~y~visiterad~w~ av ~b~maffian~w~',
+  ['have_withdrawn'] = 'du har tagit ut x',
+  ['not_enough_in_society'] = 'det finns ~r~inte~w~ tillräckligt av ~r~det objektet~w~ i föreningen!',
+  ['player_cannot_hold'] = 'du har ~r~inte~w~ tillräckligt med ~y~utrymme~w~ för att hålla det!',
   -- Cloakroom
   ['cloakroom'] = 'Omklädningsrum',
   ['citizen_wear'] = 'Vanliga kläder',
@@ -70,7 +73,6 @@ Locales['sv'] = {
   ['amount_of_deposit'] = 'Mängd att sätta in',
   ['open_bossmenu'] = 'tryck ~INPUT_CONTEXT~ för att öpna menyn',
   ['quantity_invalid'] = 'Felaktig mängd',
-  ['have_withdrawn'] = 'Du har tagit ut x',
   ['added'] = 'Du har lagt till x',
   ['quantity'] = 'Mängd',
   ['inventory'] = 'Inventory',
