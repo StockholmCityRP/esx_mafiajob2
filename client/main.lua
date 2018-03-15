@@ -349,13 +349,11 @@ function OpenMafiaActionsMenu()
             title    = _U('citizen_interaction'),
             align    = 'bottom-right',
             elements = {
-              {label = _U('id_card'),       value = 'identity_card'},
               {label = _U('search'),        value = 'body_search'},
               {label = _U('handcuff'),    value = 'handcuff'},
               {label = _U('drag'),      value = 'drag'},
               {label = _U('put_in_vehicle'),  value = 'put_in_vehicle'},
-              {label = _U('out_the_vehicle'), value = 'out_the_vehicle'},
-              --{label = _U('fine'),            value = 'fine'}
+              {label = _U('out_the_vehicle'), value = 'out_the_vehicle'}
             },
           },
           function(data2, menu2)
@@ -363,10 +361,6 @@ function OpenMafiaActionsMenu()
             local player, distance = ESX.Game.GetClosestPlayer()
 
             if distance ~= -1 and distance <= 3.0 then
-
-              if data2.current.value == 'identity_card' then
-                OpenIdentityCardMenu(player)
-              end
 
               if data2.current.value == 'body_search' then
                 OpenBodySearchMenu(player)
@@ -386,10 +380,6 @@ function OpenMafiaActionsMenu()
 
               if data2.current.value == 'out_the_vehicle' then
                   TriggerServerEvent('esx_mafiajob2:OutVehicle', GetPlayerServerId(player))
-              end
-
-              if data2.current.value == 'fine' then
-                OpenFineMenu(player)
               end
 
             else
@@ -412,8 +402,7 @@ function OpenMafiaActionsMenu()
             title    = _U('vehicle_interaction'),
             align    = 'bottom-right',
             elements = {
-              {label = _U('vehicle_info'), value = 'vehicle_infos'},
-              {label = _U('pick_lock'),    value = 'hijack_vehicle'},
+              {label = _U('pick_lock'),    value = 'hijack_vehicle'}
             },
           },
           function(data2, menu2)
@@ -425,10 +414,6 @@ function OpenMafiaActionsMenu()
             if DoesEntityExist(vehicle) then
 
               local vehicleData = ESX.Game.GetVehicleProperties(vehicle)
-
-              if data2.current.value == 'vehicle_infos' then
-                OpenVehicleInfosMenu(vehicleData)
-              end
 
               if data2.current.value == 'hijack_vehicle' then
 
@@ -529,145 +514,7 @@ function OpenMafiaActionsMenu()
 
 end
 
-function OpenIdentityCardMenu(player)
 
-  if Config.EnableESXIdentity then
-
-    ESX.TriggerServerCallback('esx_mafiajob2:getOtherPlayerData', function(data)
-
-      local jobLabel    = nil
-      local sexLabel    = nil
-      local sex         = nil
-      local dobLabel    = nil
-      local heightLabel = nil
-      local idLabel     = nil
-
-      if data.job.grade_label ~= nil and  data.job.grade_label ~= '' then
-        jobLabel = 'Job : ' .. data.job.label .. ' - ' .. data.job.grade_label
-      else
-        jobLabel = 'Job : ' .. data.job.label
-      end
-
-      if data.sex ~= nil then
-        if (data.sex == 'm') or (data.sex == 'M') then
-          sex = 'Male'
-        else
-          sex = 'Female'
-        end
-        sexLabel = 'Sex : ' .. sex
-      else
-        sexLabel = 'Sex : Unknown'
-      end
-
-      if data.dob ~= nil then
-        dobLabel = 'DOB : ' .. data.dob
-      else
-        dobLabel = 'DOB : Unknown'
-      end
-
-      if data.height ~= nil then
-        heightLabel = 'Height : ' .. data.height
-      else
-        heightLabel = 'Height : Unknown'
-      end
-
-      if data.name ~= nil then
-        idLabel = 'ID : ' .. data.name
-      else
-        idLabel = 'ID : Unknown'
-      end
-
-      local elements = {
-        {label = _U('name') .. data.firstname .. " " .. data.lastname, value = nil},
-        {label = sexLabel,    value = nil},
-        {label = dobLabel,    value = nil},
-        {label = heightLabel, value = nil},
-        {label = jobLabel,    value = nil},
-        {label = idLabel,     value = nil},
-      }
-
-      if data.drunk ~= nil then
-        table.insert(elements, {label = _U('bac') .. data.drunk .. '%', value = nil})
-      end
-
-      if data.licenses ~= nil then
-
-        table.insert(elements, {label = '--- Licenses ---', value = nil})
-
-        for i=1, #data.licenses, 1 do
-          table.insert(elements, {label = data.licenses[i].label, value = nil})
-        end
-
-      end
-
-      ESX.UI.Menu.Open(
-        'default', GetCurrentResourceName(), 'citizen_interaction',
-        {
-          title    = _U('citizen_interaction'),
-          align    = 'bottom-right',
-          elements = elements,
-        },
-        function(data, menu)
-
-        end,
-        function(data, menu)
-          menu.close()
-        end
-      )
-
-    end, GetPlayerServerId(player))
-
-  else
-
-    ESX.TriggerServerCallback('esx_mafiajob2:getOtherPlayerData', function(data)
-
-      local jobLabel = nil
-
-      if data.job.grade_label ~= nil and  data.job.grade_label ~= '' then
-        jobLabel = 'Job : ' .. data.job.label .. ' - ' .. data.job.grade_label
-      else
-        jobLabel = 'Job : ' .. data.job.label
-      end
-
-        local elements = {
-          {label = _U('name') .. data.name, value = nil},
-          {label = jobLabel,              value = nil},
-        }
-
-      if data.drunk ~= nil then
-        table.insert(elements, {label = _U('bac') .. data.drunk .. '%', value = nil})
-      end
-
-      if data.licenses ~= nil then
-
-        table.insert(elements, {label = '--- Licenses ---', value = nil})
-
-        for i=1, #data.licenses, 1 do
-          table.insert(elements, {label = data.licenses[i].label, value = nil})
-        end
-
-      end
-
-      ESX.UI.Menu.Open(
-        'default', GetCurrentResourceName(), 'citizen_interaction',
-        {
-          title    = _U('citizen_interaction'),
-          align    = 'bottom-right',
-          elements = elements,
-        },
-        function(data, menu)
-
-        end,
-        function(data, menu)
-          menu.close()
-        end
-      )
-
-    end, GetPlayerServerId(player))
-
-  end
-
-end
 
 function OpenBodySearchMenu(player)
   TriggerServerEvent('esx_mafiajob2:sendMsg', GetPlayerServerId(player), _U('being_searched'))
@@ -743,112 +590,6 @@ function OpenBodySearchMenu(player)
     )
 
   end, GetPlayerServerId(player))
-
-end
-
-function OpenFineMenu(player)
-
-  ESX.UI.Menu.Open(
-    'default', GetCurrentResourceName(), 'fine',
-    {
-      title    = _U('fine'),
-      align    = 'bottom-right',
-      elements = {
-        {label = _U('traffic_offense'),   value = 0},
-        {label = _U('minor_offense'),     value = 1},
-        {label = _U('average_offense'),   value = 2},
-        {label = _U('major_offense'),     value = 3}
-      },
-    },
-    function(data, menu)
-
-      OpenFineCategoryMenu(player, data.current.value)
-
-    end,
-    function(data, menu)
-      menu.close()
-    end
-  )
-
-end
-
-function OpenFineCategoryMenu(player, category)
-
-  ESX.TriggerServerCallback('esx_mafiajob2:getFineList', function(fines)
-
-    local elements = {}
-
-    for i=1, #fines, 1 do
-      table.insert(elements, {
-        label     = fines[i].label .. ' $' .. fines[i].amount,
-        value     = fines[i].id,
-        amount    = fines[i].amount,
-        fineLabel = fines[i].label
-      })
-    end
-
-    ESX.UI.Menu.Open(
-      'default', GetCurrentResourceName(), 'fine_category',
-      {
-        title    = _U('fine'),
-        align    = 'bottom-right',
-        elements = elements,
-      },
-      function(data, menu)
-
-        local label  = data.current.fineLabel
-        local amount = data.current.amount
-
-        menu.close()
-
-        if Config.EnablePlayerManagement then
-          TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), 'society_mafia2', _U('fine_total') .. label, amount)
-        else
-          TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), '', _U('fine_total') .. label, amount)
-        end
-
-        ESX.SetTimeout(300, function()
-          OpenFineCategoryMenu(player, category)
-        end)
-
-      end,
-      function(data, menu)
-        menu.close()
-      end
-    )
-
-  end, category)
-
-end
-
-function OpenVehicleInfosMenu(vehicleData)
-
-  ESX.TriggerServerCallback('esx_mafiajob2:getVehicleInfos', function(infos)
-
-    local elements = {}
-
-    table.insert(elements, {label = _U('plate') .. infos.plate, value = nil})
-
-    if infos.owner == nil then
-      table.insert(elements, {label = _U('owner_unknown'), value = nil})
-    else
-      table.insert(elements, {label = _U('owner') .. infos.owner, value = nil})
-    end
-
-    ESX.UI.Menu.Open(
-      'default', GetCurrentResourceName(), 'vehicle_infos',
-      {
-        title    = _U('vehicle_info'),
-        align    = 'bottom-right',
-        elements = elements,
-      },
-      nil,
-      function(data, menu)
-        menu.close()
-      end
-    )
-
-  end, vehicleData.plate)
 
 end
 
@@ -986,8 +727,6 @@ function OpenGetStocksMenu()
 
   ESX.TriggerServerCallback('esx_mafiajob2:getStockItems', function(items)
 
-    print(json.encode(items))
-
     local elements = {}
 
     for i=1, #items, 1 do
@@ -1109,19 +848,6 @@ RegisterNetEvent('esx:setJob')
 AddEventHandler('esx:setJob', function(job)
   PlayerData.job = job
 end)
-
--- RegisterNetEvent('esx_phone:loaded')
--- AddEventHandler('esx_phone:loaded', function(phoneNumber, contacts)
-
---   local specialContact = {
---     name       = 'Mafia',
---     number     = 'mafia',
---     base64Icon = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDFGQTJDRkI0QUJCMTFFN0JBNkQ5OENBMUI4QUEzM0YiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDFGQTJDRkM0QUJCMTFFN0JBNkQ5OENBMUI4QUEzM0YiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0MUZBMkNGOTRBQkIxMUU3QkE2RDk4Q0ExQjhBQTMzRiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0MUZBMkNGQTRBQkIxMUU3QkE2RDk4Q0ExQjhBQTMzRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PoW66EYAAAjGSURBVHjapJcLcFTV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'
---   }
-
---   TriggerEvent('esx_phone:addSpecialContact', specialContact.name, specialContact.number, specialContact.base64Icon)
-
--- end)
 
 AddEventHandler('esx_mafiajob2:hasEnteredMarker', function(station, part, partNum)
 
@@ -1337,6 +1063,9 @@ Citizen.CreateThread(function()
       DisableControlAction(0, 142, true) -- MeleeAttackAlternate
       DisableControlAction(0, 30,  true) -- MoveLeftRight
       DisableControlAction(0, 31,  true) -- MoveUpDown
+	  DisableControlAction(0, 24,  true) -- Shoot 
+      DisableControlAction(0, 92,  true) -- Shoot in car
+      DisableControlAction(0, 75,  true) -- Leave Vehicle
     end
   end
 end)
@@ -1687,13 +1416,4 @@ Citizen.CreateThread(function()
     end
 
   end
-end)
-
----------------------------------------------------------------------------------------------------------
---NB : gestion des menu
----------------------------------------------------------------------------------------------------------
-
-RegisterNetEvent('NB:openMenuMafia')
-AddEventHandler('NB:openMenuMafia', function()
-	OpenMafiaActionsMenu()
 end)
